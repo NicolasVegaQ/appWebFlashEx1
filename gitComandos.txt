@@ -1,0 +1,43 @@
+git init
+git add .
+git commit -m "Primer commit"
+git branch
+git branch -m main
+git remote add origin https://github.com/NicolasVegaQ/appWebFlashEx1.git
+git pull origin main --allow-unrelated-histories
+git push -u origin main
+
+flask --app . run --debug
+
+************ Explciaicon decoradores en python ************
+import functools
+def mi_decorador(func):
+    def wrapper():
+        print("Antes")
+        return func()
+    return wrapper
+
+@mi_decorador
+def saludar():
+    """Función que saluda."""
+    print("Hola!")
+
+print(saludar.__name__)  # Resultado: wrapper 😱
+print(saludar.__doc__)   # Resultado: None
+
+
+import functools
+def mi_decorador(func):
+    @functools.wraps(func)
+    def wrapper():
+        print("Antes")
+        return func()
+    return wrapper
+
+@mi_decorador
+def saludar():
+    """Función que saluda."""
+    print("Hola!")
+
+print(saludar.__name__)  # Resultado: saludar ✅
+print(saludar.__doc__)   # Resultado: Función que saluda. ✅
